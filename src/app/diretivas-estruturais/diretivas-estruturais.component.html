@@ -1,0 +1,10 @@
+<div>
+    <h2>Resultado Jogo Sexta-feira: </h2>
+    <span *ngIf="resultBrasilGameSaturday==true; else lose">Venceu</span>
+    <ng-template #lose>
+        <span *ngIf="resultBrasilGameSaturday==false; else undefined">Perdeu</span>
+    </ng-template>
+    <ng-template #undefined>
+        <span *ngIf="resultBrasilGameSaturday==false; else undefined">Perdeu</span>
+    </ng-template>
+</div>

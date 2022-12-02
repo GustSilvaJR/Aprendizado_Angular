@@ -1,0 +1,29 @@
+<h1>COMPONENTE DATA-BIDING</h1>
+------------------------------------------------------------------------------------------------------------
+
+<p>Estou apresentando o seguinte dado a partir do recurso de interpolação:</p>
+<h2>{{name}}</h2>
+
+------------------------------------------------------------------------------------------------------------
+
+<p>Estou apresentando placeholder do input a partir do recurso de property binding:</p>
+<input style='width: 300px;' type="text" [placeholder]="formatNoDashesOrDots"/>
+<br/>
+<br/>
+
+------------------------------------------------------------------------------------------------------------
+
+<p>Event Biding que aciona uma função sempre que a tecla espaço seja pressionada no teclado</p>
+<input type="text" (keydown.space)="onSpacePress()"/>
+<br/>
+<br/>
+
+------------------------------------------------------------------------------------------------------------
+
+<p>Two-Way Data-Biding sincronizando os dados inseridos no input com o valor do atributo na classe.</p>
+<p>Dessa forma, o valor default do atributo ja é passado inicialmente para o input, e assim que o input for alterado o valor do atributo também será</p>
+<p>Assim impleto duas vias. Se alterar na classe, altera no input. Se alterar no input altera na classe</p>
+
+<input type="text" [(ngModel)]="twoWayDataBidingInput" (change)="change()" />
+<h3>Valor vindo do atributo: {{twoWayDataBidingInput}}</h3>
+
