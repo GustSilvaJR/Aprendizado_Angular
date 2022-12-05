@@ -1,10 +1,40 @@
 <div>
-    <h2>Resultado Jogo Sexta-feira: </h2>
+    <h2>Resultado Jogo Sexta-feira usnado Ng-If: </h2>
     <span *ngIf="resultBrasilGameSaturday==true; else lose">Venceu</span>
+    
     <ng-template #lose>
-        <span *ngIf="resultBrasilGameSaturday==false; else undefined">Perdeu</span>
+        <span *ngIf="resultBrasilGameSaturday==false; else teste">Perdeu</span>
     </ng-template>
-    <ng-template #undefined>
-        <span *ngIf="resultBrasilGameSaturday==false; else undefined">Perdeu</span>
+
+    <ng-template #teste>
+        <span>Jogo Ainda Nao Ocorreu</span>
     </ng-template>
+    <hr/>
+    
+    <h2>Iterando sobre um array de objetos com o Ng-for</h2>
+    <table class="table">
+        <tr>
+            <th>Index</th>
+            <th>Nome</th>
+            <th>Idade</th>
+        </tr>
+        <tr *ngFor="let user of users; let i = index;">
+            <td>{{i}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.idade}}</td>
+        </tr>
+    </table>
+    <hr/>
+    <h2>Utilizando ng-switch</h2>
+    <div [ngSwitch]="auxSwitch">
+        <span *ngSwitchCase="'Gustavo'">
+            Usuario logado: Gustavo
+        </span>
+        <span *ngSwitchCase="'Sabrina'">
+            Usuario logado: Sabrina
+        </span>
+        <span *ngSwitchDefault>
+            Usuario logado: Desconhecido
+        </span>
+    </div>
 </div>

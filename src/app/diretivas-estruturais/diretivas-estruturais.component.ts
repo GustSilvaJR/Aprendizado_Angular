@@ -5,9 +5,23 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './diretivas-estruturais.component.html',
   styleUrls: ['./diretivas-estruturais.component.scss']
 })
-export class DiretivasEstruturaisComponent implements OnInit {
+
+export class DiretivasEstruturaisComponent implements OnInit { 
 
   public resultBrasilGameSaturday: any = null;
+  public users:Array<myList> = 
+  [
+    {
+      name:"Gustavo",
+      idade:22
+    },
+    {
+      name:"Sabrina",
+      idade:25  
+    }
+  ];
+  
+  public auxSwitch:String = "Gustavo";
 
   constructor() { }
 
@@ -15,3 +29,8 @@ export class DiretivasEstruturaisComponent implements OnInit {
   }
 
 }
+
+interface myList{
+  name:String,
+  idade:number
+};

@@ -1,0 +1,55 @@
+<!-- <h2 [ngClass]="{'active':valor, 'disabled': !valor}">
+    Alterando Classe de Acordo com Diretivas de Atributos
+</h2>
+
+<br />
+<br />
+<br /> -->
+Parte dinamica comentada para evitar o pisca pisca
+________________________________________________________________________________________________________________________________________________________________________
+
+<h2 [ngStyle]="{background:'red'}">
+    Alterando a partir do ngStyle
+</h2>
+
+<br />
+<br />
+<br />
+________________________________________________________________________________________________________________________________________________________________________
+<h2>Implementando de forma dinamica novos usuarios em uma tabela usando ngModel:</h2>
+
+<table [ngClass]="{'table': true}">
+    <tr>
+        <th>Index</th>
+        <th>Nome</th>
+        <th>Idade</th>
+    </tr>
+
+    <tr *ngFor="let user of users; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.idade}}</td>
+    </tr>
+</table>
+
+<input type="text" [(ngModel)]="nameNewUser" />
+<input type="number" [(ngModel)]="ageNewUser" />
+<button (click)="add()">Adicionar</button>
+<br />
+<br />
+<br />
+________________________________________________________________________________________________________________________________________________________________________
+<h2>Utilizando ng-template</h2>
+
+<ng-template [ngIf]="show">
+    <h3>Mandou me exibir ?!</h3>
+</ng-template>
+
+<button (click)="showTemp()">{{btnTemp}}</button>
+<br />
+<br />
+<br />
+________________________________________________________________________________________________________________
+<h2>Utilizando ng content para passar um valor personalizado pelo componente main da aplicacao</h2>
+
+<ng-content select="p"></ng-content>
