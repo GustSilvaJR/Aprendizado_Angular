@@ -8,8 +8,18 @@ import { Component, OnDestroy } from '@angular/core';
 export class AppComponent {
   public title:String = 'myapp';
   public life:boolean = true;
+  public dataFood:food;
 
   public destroyComponent():void{
     this.life = false;
   }
+
+  public setData(event:food){
+    this.dataFood=event;
+  }
+}
+
+interface food{
+  nome:string;
+  preco:number
 }
