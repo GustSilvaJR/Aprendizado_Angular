@@ -24,3 +24,21 @@ ________________________________________________________________________________
     <p>Passando parâmetro através do escopo da tag do componente dentro do componente main</p>
 </app-diretivas-atributos>
 <router-outlet></router-outlet>
+
+<br/>
+<br/>
+<br/>
+________________________________________________________________________________________________________________________________________________________________________
+<app-input nomeUsuarioLogado="Gustavo"></app-input>
+
+<br/>
+<br/>
+<br/>
+________________________________________________________________________________________________________________________________________________________________________
+<app-output (sendData)="setData($event)"></app-output>
+<h3>Ao clicar em um dos botões, os dados a serem enviados aparecerão aqui:</h3>
+
+<div class="ms-2">
+    <p >Nome: <span *ngIf="dataFood">{{dataFood.nome}}</span></p>
+    <p >Preço: <span *ngIf="dataFood">{{dataFood.preco}}</span></p>
+</div>
