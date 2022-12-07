@@ -1,0 +1,14 @@
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Preco</th>
+    </tr>
+    <tbody>
+        <tr *ngFor="let comida of comidas; let i = index">
+            <td>{{comida.nome}}</td>
+            <td>{{comida.preco}}</td>
+            <button class="btn btn-primary" (click)="add(i)">Enviar</button>
+        </tr>
+    </tbody>
+</table>
+
