@@ -311,3 +311,30 @@ ________________________________________________________
         public setData(event:food){ //Função para captar o valor informado
             this.dataFood=event;
         }
+
+
+
+_________________________________________________________________________________________________________________________________________________________
+PROGRAMAÇÃO REATIVA
+
+        É um paradigma baseado em eventos, dessa forma se tendo um software mais reativo do que proativo. Um software proativo a todo momento busca estar 
+    executando algum algoritmo, acabando por consumir muitos dados do processador.
+        Já na programação reativa temos um software que atua de uma maneira mais reativa. Em que executará determinado bloco de código de acordo com algum
+    evento que for acionado.
+
+        Basicamente funciona com um SUBJECT que fica responsável por vigiar a ocorrência de um determinado evento, e direcionar para os interessados.
+        
+        Os Observers seriam nossas abstrações que estariam interessadas em determinados eventos e irão receber a notificação que esse evento foi acionado
+    a partir do SUBJECT, e asism irão executar determinadas ações.
+
+        Os observers precisam se registrar em qual evento estão interessados e fazem isso a partir do SUBJECT.
+
+        Além disso se tem propriamente os eventos. Eles nao ficam armazenados dentro do Subject, mas o subject consegue captar quando o evento cadastrado nele
+    ocorrer.
+
+    Observables: Este padrão é a base fundamental da programação reativa e funciona como uma promisse, porém com algumas funcionalidades a mais.
+                
+                A partir deste modelo é possível receber um fluxo de dados, e não só um valor em específico como é na promisse. Além de ser possível
+                cancelar o obserable no meio.
+
+                Além disso, a parti dele se pode fazer tanto requisições assíncronas como síncronas. 
