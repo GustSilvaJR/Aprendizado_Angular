@@ -338,3 +338,110 @@ PROGRAMAÇÃO REATIVA
                 cancelar o obserable no meio.
 
                 Além disso, a parti dele se pode fazer tanto requisições assíncronas como síncronas. 
+
+________________________________________________________
+SUBSCRIBE
+    
+        Dentro do meu serviço eu consigo criar um EventEmitter que irei utilizar para emitir um determinado evento que eu queira. Há diversas funcionalidades no
+    tipo EventEmitter, como por exemplo varEventEmiiter.emit(value), que gera um evento para retornar um determinado valor.
+
+        Daí, para que um componente consiga utilizar esse evento é necessário que ele se inscreva, e para isso se utiliza o subscribe.
+    Se inscrever nada mais é que fazer com que o componente fique "observando" até que o evento seja disparado, para assim receber o valor.
+
+    Exemplo:
+        (NoServiço)
+            //Criando
+            public eventEmitter = new EventEmitter();
+
+            //Emitindo um evento
+            this.eventEmitter.emit("Fui acionado");
+
+        (NoComponente)
+            //Injeção de dependência
+            constructor(private myService: MyService)
+
+            //Inscrição no evento
+            this.myService.eventEmitter.subscribe({
+                next: (res) => {
+                    ...do something
+                },
+                error: (err) => {
+                    ...do something
+                }    
+            });    
+
+
+_________________________________________________________________________________________________________________________________________________________
+SERVIÇOS
+
+    São utilizados principalmente para recuperar dados de APIs e a partir deles os apresentar em um componente por exemplo.
+
+    Em um serviço posso destinar diversas funções que irão trabalhar em um determinado contexto ou funcionalidade em específico.
+
+    Comando para a criação:
+
+        ng g s <caminho+nome>
+
+    Como uilizar em um componente:
+        
+        Para usá-lo, é necessário que se faça  ainjeção de dependência no componente a partir do arquivo .ts, dessa forma conseguindo acessar o serviço:
+
+            constructor(private foodListService: FoodListService) { } //Exemplo de injeção de dependência de um serviço chamado FoodListService
+
+_________________________________________________________________________________________________________________________________________________________
+FORMULÁRIOS
+
+    <input type="text" #meuInput /> //A partir desta diretiva implementada (#meuInput) eu consigo recuperar o valor digitado dentro do input e envialo para o back end por exemplo
+    
+    <button (click)="enviaInput(meuInput)">Envar</button> //Exeplo de recuperação do valor do input
+
+_________________________________________________________________________________________________________________________________________________________
+HttpClient
+
+        Este é um módulo que me permite realizar requisições http. A partir dele se faz requisições reativas, utilizando Observables para se criar um evento,
+    como se fosse pelo eventEmitter, fazendo assim com que os componentes que forem utilizar essa requisição tenham que se inscrever.
+
+        Para conseguir utilizar, antes preciso importar o HttpClient dentro do modulo.ts da aplicação e em seguida dentro do meu serviço.
+    
+    Exemplo:
+
+        (dentro de Module)
+            import { HttpClientModule } from '@angular/common/http';
+            imports: [
+                CommonModule,
+                HttpClientModule
+            ]
+
+        (dentro do Serviço)
+            import { HttpClient } from '@angular/common/http';
+            import { Observable } from 'rxjs';
+
+            public foodList(): Observable<Food>{
+                return this.httpClient.get<Food>(this.url+'foods') //Realizando uma requisição get
+                .pipe(
+                  res => res,
+                  error => error,
+                )
+            }
+
+
+
+
+
+
+
+
+
+
+
+    // ANTES
+.subscribe({
+  (res) => console.log(res),
+  (err) => console.log(err),
+});
+ 
+// DEPOIS
+.subscribe({
+  next: (res) => console.log(res),
+  error: (err) => console.log(err),
+});
