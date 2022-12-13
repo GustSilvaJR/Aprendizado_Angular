@@ -1,0 +1,30 @@
+{
+    "foods": [
+        {
+            "id": 1,
+            "name": "Bolo de Chocolate",
+            "preco": "20.50"
+        },
+        {
+            "id": 2,
+            "name": "Salgadinho Doritos",
+            "preco": "07.50"
+        },
+        {
+            "id": 3,
+            "name": "X-Tudo",
+            "preco": "15.50"
+        }
+
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "profile": {
+        "name": "typicode"
+    }
+}
