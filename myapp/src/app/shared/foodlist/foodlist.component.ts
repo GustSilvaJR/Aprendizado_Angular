@@ -10,7 +10,7 @@ import { Food } from 'src/app/models/food';
 })
 export class FoodlistComponent implements OnInit {
 
-  public foodList: Food | any;
+  public foodList: Array<Food>;
 
   constructor(private foodListService:FoodListService) { }
 
