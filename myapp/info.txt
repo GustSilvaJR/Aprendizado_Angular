@@ -311,3 +311,12 @@ ________________________________________________________
         public setData(event:food){ //Função para captar o valor informado
             this.dataFood=event;
         }
+
+_________________________________________________________________________________________________________________________________________________________
+SERVICES
+
+    Basicamente será utilizado para resgatar dados de uma API.
+
+    Comando para criação:
+        ng g s <caminho+Nome>
+        
