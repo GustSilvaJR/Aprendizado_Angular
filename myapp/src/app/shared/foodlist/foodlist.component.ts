@@ -24,7 +24,10 @@ export class FoodlistComponent implements OnInit {
 
     //Inscrevento no event emitter do meu serviço
     this.foodListService.foodEvent.subscribe({
-      next: (res:string) => alert(res),
+      next: (res:Food) => {
+        alert("Nova Comida cadastrada");
+        this.foodList.push(res);
+      },
       error: (err:Error) => alert(err) 
     });
   }
