@@ -27,12 +27,13 @@ export class FoodListService {
 
   public addFood(value:Food):Observable<Food>{
     return this.httpClient.post<Food>(this.url+'foods', { id:value.id, name:value.name, preco:value.preco })
+                .pipe(
+                    res => res,
+                    error => error
+                )
   }
 
-  //public addFood(food:string):void{
-    //Emitindo o valor da comida adicionada
-   // this.foodEvent.emit(food);
-    
-   // this.foodList().push(food);
-  //}
+  public foodListAlert(value: Food){
+    return this.foodEvent.emit(value);
+  }
 }
