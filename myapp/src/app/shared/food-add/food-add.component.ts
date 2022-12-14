@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Food } from 'src/app/models/food';
 
 //Serviço
 import { FoodListService } from 'src/app/services/food-list.service';
@@ -16,9 +17,19 @@ export class FoodAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addFood(food:string):void{
-    //this.foodListService.addFood(food);
-    console.log('teste');
+  addFood(id:string, name:string, preco:string){
+    const obj:Food ={
+      id,
+      name,
+      preco
+    }
+
+    this.foodListService.addFood(obj)
+    .subscribe({
+      next: (res:Food) => this.foodListService.foodListAlert(res),
+      error: (error:Error) => error
+
+    })
   }
 
 }
