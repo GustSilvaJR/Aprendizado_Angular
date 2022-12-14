@@ -1,3 +1,8 @@
-<input #inputValue />
-<button (click)="addFood(inputValue.value)">Adicionar</button>
+<label>Id</label>
+<input type="number" #idValue />
+<label>Nome</label>
+<input type="text" #nameValue />
+<label>Preco</label>
+<input type="text" #precoValue />
+<button (click)="addFood(idValue.value, nameValue.value, precoValue.value)">Adicionar</button>
 
