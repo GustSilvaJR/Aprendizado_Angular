@@ -1,5 +1,5 @@
 export interface Food {
-    id:number,
+    id:string,
     name:string,
     preco:string
 }
