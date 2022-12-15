@@ -1,8 +1,9 @@
 <ul>
     <li *ngFor="let food of foodList">
         <p>Id: {{food.id}}</p>
-        <p>Name: {{food.name}}</p>
-        <p>Preço: {{food.preco}}</p>
+        <p>Name: <input type="text" [(ngModel)]="food.name" /></p>
+        <p>Preço: <input type="text" [(ngModel)]="food.preco" /></p>
         <button type="button" (click)="deleteFood(food.id)">Excluir</button>
+        <button type="button" (click)="editFood(food.id, food.name, food.preco)">Editar</button>
     </li>
 </ul>

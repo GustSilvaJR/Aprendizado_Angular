@@ -6,6 +6,7 @@ import { OutputComponent } from './output/output.component';
 import { FoodlistComponent } from './foodlist/foodlist.component';
 import { FoodAddComponent } from './food-add/food-add.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class SharedModule { }

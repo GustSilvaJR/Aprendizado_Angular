@@ -32,6 +32,22 @@ export class FoodlistComponent implements OnInit {
     });
   }
 
+  public editFood(id:string, name:string, preco:string){
+    let food:Food = {
+      id,
+      name,
+      preco
+    }
+
+    this.foodListService.editFood(food).subscribe({
+      next: (res:Food) => {
+        alert("Editado com sucesso!");
+        console.log(res);
+      },
+      error: (err:Error) => alert(`Erro ${err}`)
+    })
+  };
+
   public deleteFood(id:string):void{
     this.foodListService.deleteFood(id).subscribe({
       next: (res:any) => {
