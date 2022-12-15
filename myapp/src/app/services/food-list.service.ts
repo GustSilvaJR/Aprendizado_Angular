@@ -36,4 +36,13 @@ export class FoodListService {
   public foodListAlert(value: Food){
     return this.foodEvent.emit(value);
   }
+
+  public deleteFood(id:string):Observable<any>{
+    return this.httpClient.delete<any>(this.url+'foods/'+id)
+                .pipe(
+                  res => res,
+                  error => error
+                )
+  }
+
 }
