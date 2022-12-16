@@ -425,7 +425,7 @@ HttpClient
             }
 
 _________________________________________________________________________________________________________________________________________________________
-FORMULÁRIOS COM NGFORM
+FORMULÁRIOS COM NGFORM - TEMPLATE DRIVEN FORM
 
     Inicialmente preciso importar o ngform no meu arquivo .module.ts e em seguida ja posso iniciar a criação dos meus formulários.
 
@@ -474,7 +474,48 @@ ACESSANDO VALOR DO FORMULARIO
 
         {{myForm.value | json}}
 
+_________________________________________________________________________________________________________________________________________________________
+UTILIZANDO REACTIVE FORM
+
+        Inicialmente é necessário relizar algumas importações dentro do arquivo.ts que se deseja implementar
+    Existem outras opcoes, mas a recomendada pelo curso são estas:
+
+        import { FormBuilder, FormGroup} from '@angular/forms';
+
+    Em seguida realizar a injeção de dependência:
+
+        constructor(private formBuilder: FormBuilder) { }
+    
+        A partir deste formBuilder, consigo criar um objeto que irá representar os dados
+    que terei dentro do meu formuário. E a partir do formulário fazer um two-way-data-binding
+    com este atributo criado dentro do objeto para que eu possa já ir captando os dados do form de forma dinamica.
+
+        E a partir desse modelo, também se torna mais pratico caso eu tenha que popular prevaimente alguns dados dentro do meu formulário.
+    ja processando isso no meu arquivo .ts, e com o data-binding apresentando no arquivo html de forma dinamica
+
+    Exemplo:
+        (NO MEU ARQUIVO .TS)
+        public meuForm:FormGroup = this.formBuilder.group({
+            myAtt1: ['<value>'],
+            myAtt2:['<value2']
+        });
+
+        (NO ARQUIVO HTML)
+        <form [formGroup]="meuForm">
+
+            <input type="text" [formControlName]="myAtt1"/>
+        </form>
+
 ________________________________________________________
+VALIDATORS
+    import { Validators } from '@angular/forms';
+
+    public cadastroForm: FormGroup = this.formBuilder.group({
+    firstName: ['', Validators.required, Validators.min(2)]
+  });
+
+  Bata utilizar junto do meu elemento do formn group
+_________________________________________________________________________________________________________________________________________________________
 SUBMIT DE UM FORMULÁRIO
 
         Basta incluir o evento ngSubmit e o referenciar a uma função do meu arquivo .ts  vinculado ao componente
