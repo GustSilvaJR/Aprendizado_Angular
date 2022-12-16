@@ -10,6 +10,7 @@ import { DiretivasEstruturaisComponent } from './diretivas-estruturais/diretivas
 import { DiretivasAtributosComponent } from './diretivas-atributos/diretivas-atributos.component';
 import { SharedModule } from './shared/shared.module';
 import { FormComponent } from './form/form.component';
+import { MyReactiveFormModule } from './my-reactive-form/my-reactive-form.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormComponent } from './form/form.component';
     AppRoutingModule,
     FormsModule,
     SharedModule,
+    MyReactiveFormModule
   ],
   providers: [],
   bootstrap: [AppComponent]
