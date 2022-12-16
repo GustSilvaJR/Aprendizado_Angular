@@ -1,0 +1,8 @@
+<form [formGroup]="cadastroForm">
+    <input type="text" formControlName="firstName" (keyup)="teste()"/>
+    <span *ngIf="cadastroForm.get('firstName')?.errors && cadastroForm.get('firstName')?.dirty">Favor, inserir texto!</span>
+    {{cadastroForm.get('firstName')?.invalid | json}}
+    {{cadastroForm.get('firstName')?.dirty | json}}
+    {{cadastroForm.get('firstName')?.valid | json}}
+    <button [disabled]="cadastroForm.invalid" type="submit">Enviar</button>
+</form>
