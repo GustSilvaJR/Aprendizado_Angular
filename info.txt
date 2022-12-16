@@ -523,3 +523,24 @@ SUBMIT DE UM FORMULÁRIO
 
     <form #form="ngForm" (ngSubmit)="sendForm(form)">
     </form>
+
+_________________________________________________________________________________________________________________________________________________________
+ROUTES
+
+        Incluo minhas rotas a partir do arquivo app-routing.module.ts, do qual se é criado automaticamente
+    no início do projeto caso eu marque a opção que desejo utilizar rotas no projeto.
+
+    Dentro deste arquivo defino as rotas da minha aplicação e para quais componentes irão apontar.
+
+    const routes: Routes = [
+        {path:"", component:AppComponent, pathMatch:'full'}
+    ];
+
+    Dentro desta contante que indico minhas rotas, cada objeto dentro deste array
+    equivale a uma rota.
+
+    path: "<nomeRota>" //O endereço que será necessário pesquisar na url para se direcionar a esta rota
+
+    component: <nomeComponent> //Para qual componente irá redirecionar
+
+    pathMatch: 
