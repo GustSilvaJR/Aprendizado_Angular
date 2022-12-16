@@ -424,24 +424,61 @@ HttpClient
                 )
             }
 
+_________________________________________________________________________________________________________________________________________________________
+FORMULÁRIOS COM NGFORM
 
+    Inicialmente preciso importar o ngform no meu arquivo .module.ts e em seguida ja posso iniciar a criação dos meus formulários.
 
+    //No # específico o nome que irá identificar meu formulário e atribuo a ele o ngForm, definindo que as estruturas utilziadas serão baseadas nesse módulo
+    <form #myForm=ngForm></form> 
 
+________________________________________________________ 
+INPUTS PADRAO:
 
+        <input type="text" name="<name_input>" ngModel /> //Dessa forma faço um binding do name que passei pro meu input com um elemento que acessarei
+                                                          // dentro do #myForm
+ ________________________________________________________
+RADIO BUTTONS
+        //Basicamente segue o mesmo padrao do input text
+        <div>
+            <input type="radio" name="tecnologia" value="HTML" ngModel/>
+            <input type="radio" name="tecnologia" value="CSS" ngModel />
+            <input type="radio" name="tecnologia" value="JavaScript" ngModel />
+        </div>
 
+________________________________________________________    
+CHECKBOX: Mesmo padrão dos de cima.
 
+________________________________________________________
+SELECTED | OPTIONS
 
+    <select name="Filial" ngModel>
+        <option value="Brasilia">Brasilia</option>
+        <option value="Tres Coracoes">Tres Corações</option>
+        <option value="Varginha">Varginha</option>
+    </select>
+________________________________________________________
+VALIDANDO INPUT
 
+    <input type="text" name="inputValidation" #inputValidation="ngModel" required ngModel/>
 
+    Daí a partir do nome que associei a ngModel, #inputValidation, consigo acessar 3 propriedades principais:
+        valid -> Se foi preenchido ou nao
+        touched -> Se ja foi clicado pelo usuario
+        dirty -> Se ja foi alterado ao menos uma vez pelo usuario
 
-    // ANTES
-.subscribe({
-  (res) => console.log(res),
-  (err) => console.log(err),
-});
- 
-// DEPOIS
-.subscribe({
-  next: (res) => console.log(res),
-  error: (err) => console.log(err),
-});
+        basta usar: {{inputValidation.valid}}
+    
+________________________________________________________
+ACESSANDO VALOR DO FORMULARIO
+
+        {{myForm.value | json}}
+
+________________________________________________________
+SUBMIT DE UM FORMULÁRIO
+
+        Basta incluir o evento ngSubmit e o referenciar a uma função do meu arquivo .ts  vinculado ao componente
+    e passar como parametro o meu formulario para tratar os dados a serem enviados.
+
+    <form #form="ngForm" (ngSubmit)="sendForm(form)">
+    </form>
