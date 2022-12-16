@@ -1,0 +1,42 @@
+
+<form #form="ngForm" (ngSubmit)="sendForm(form)">
+    <h3>Input text</h3>
+    <label>Nome:</label>
+    <input type="text" name="nome" ngModel>
+
+    <hr>
+    <br/>
+
+    <h3>Radio Button</h3>
+    <div>
+        <label>Html</label>
+        <input type="radio" name="tecnologia" value="HTML" ngModel/>
+        <label>Css</label>
+        <input type="radio" name="tecnologia" value="CSS" ngModel />
+        <label>JS</label>
+        <input type="radio" name="tecnologia" value="JavaScript" ngModel />
+    </div>
+
+    <h3>Select|Options</h3>
+    <select name="Filial" ngModel>
+        <option value="Brasilia">Brasilia</option>
+        <option value="Tres Coracoes">Tres Corações</option>
+        <option value="Varginha">Varginha</option>
+    </select>
+    <hr>
+    <br/>
+
+    <h3>Validação de Input</h3>
+    <input type="text" name="inputValidation" #inputValidation="ngModel" required ngModel/>
+    <h4>Analise do input acima: Valido-> {{inputValidation.valid}} | Ja foi alterado ao menos uma vez -> {{inputValidation.dirty}}
+        | Recebeu clique -> {{inputValidation.touched}}
+    </h4>
+    <br/>
+    <br/>
+    <button type="submit" [disabled]="form.invalid">Enviar</button>
+    
+</form>
+
+<br/>
+<br/>
+{{ form.value | json}}
