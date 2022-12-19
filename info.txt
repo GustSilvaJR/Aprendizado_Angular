@@ -544,3 +544,116 @@ ROUTES
     component: <nomeComponent> //Para qual componente irá redirecionar
 
     pathMatch: 
+
+________________________________________________________
+        A rota é direcionada para uma tag chamada <router-outlet></router-outlet>, geralmente atribuída
+    no componente main da aplicação, na parte do html. Se ele nao ofr adicionado, a rota nao sabera para onde
+    redirecionar o componente atribuído a ela
+
+________________________________________________________
+ROTA CORINGA
+
+    {path:"notFound", component:"error"}
+    {path:"**", redirectTo:"notFound"} //Esta é minha rota coringa, sempre que uma rota nao valida for pesquisada, ela me redirecionará
+                                     para a rota que eu especifiquei 
+
+________________________________________________________
+ROTAS NO HTML 
+
+    routerLink:
+        <a routerLink="route">Meu link</a> //Dessa maneira eu utilizo meu link dentro do arquivo html
+
+    routerLinkActive:
+        [routerLinkActive]="['<classe>']" //Ao adicionar esse parametro em um link, assim que ele for acionado, algum estilo será adicionado a ele
+                                          //Neste caso mantem a rota marcado caso acesse subrotas dentro desta. Como por ex: /site tambem ficaria marcado caso acessasse /site/noticias
+    routerLinkActiveOptions:
+        [routerLinkActiveOptions]:"{exact: true}" //Adicionando essa opcao no link, só será marcada a rota caso for exatamente a rota acessada. Subrotas nao deixarao a rota pai marcada
+
+________________________________________________________
+PARAMETROS NAS ROTAS
+
+    Criando parametros:
+        {path:"sobre/:id/:name", component:SobreComponent} //Aqui estou criando uma rota parametrizada
+
+
+    Recuperando parametros passados na rota:
+        (Dentro do arquivo .ts do componente associado a rota que recebe os parametros)
+
+        import { ActivatedRoute } from '@angular/router';
+
+        constructor(private activatedRouter: ActivatedRoute)
+
+        this.activatedRouter.params.subscribe(
+            {
+                next: res => do something,
+                error: err=> do othething
+            }
+        )
+
+    Recuperando QueryParams:
+        (Dentro do arquivo .ts do componente associado a rota que recebe os parametros)
+
+        import { ActivatedRoute } from '@angular/router';
+
+        constructor(private activatedRouter: ActivatedRoute)
+
+
+        this.activatedRoute.queryParams.subscribe({
+            next:res => console.log(res),
+            error:err => console.log(err)   
+        });
+
+________________________________________________________
+REDIRECIONANDO URLS A PARTIR DO CONTROLLER
+
+    import {Router} from '@angular/router
+
+    constructor(private router: Router){}
+
+    this.router.navigate(['<route>']) //Navegação sem reiniciar a aplicação do zero
+
+    this.router.navigateByUrl(['<route>']) //Neste a aplicação é regarreda do zero. Mais utilizada para acessar aplicações ou páginas externas
+
+________________________________________________________
+ROTAS FILHAS
+
+        Basicamente é uma subrota de uma rota ja existemte. A partir de uma rota pai, passando 
+    alguns novos endereços posso acessar novas rotas
+
+    {path:"sobre", component:SobreComponent, children:[
+    {path:"sobre/:id/:name", component:SobreComponent},
+    ]},
+
+________________________________________________________
+LEAZING LOAD
+
+        É utilizado para deixar a aplciação mais dinâmica durante o carregamento de seus componentes, dessa forma 
+    baixando os arquivos com um tempo mais espaçado, ganhando mais desempenho na aplicação.
+
+        O funcionamento se da por:
+
+            -> Criar um módulo para o determinado contexto que se irá utilizar
+
+            -> Nesse modulo, criar um outro arquivo de rotas filho e dentro dele alterar o seguinte campo:
+                imports: [RouterModule.forRoot(routes)], para imports: [RouterModule.forChild(routes)],
+
+                Dessa forma, estarei indicando que este arquivo de rotas é um arquivo de rotas filho, um auxiliar. Já que ja tenho um arquivo de rotas principal
+            
+            -> Criar uma rota dentro do meu arquivo de rotas filho, que irá referenciar algum componente interno meu
+
+            -> Importar meu arquivo de rotas dentro do meu novo modulo criado
+
+                import { <NameRoutingModule> } from './dashboard-routing.module';
+
+                imports: [
+                    ...,
+                    <NameRoutingModule>
+                ]
+            
+            -> Proximo passo é criar uma rota dentro do meu arquivo de rotas principal,
+               referenciando algum componente de dentro do meu novo modulo:
+
+                {path:"dashboard", loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)},
+
+                Dessa forma estarei referenciando meu arquivo .module, que importa as rotas deste próprio modulo. E a partir delas 
+                estarei referenciando algum componente de dentro do módulo
