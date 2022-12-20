@@ -2,20 +2,32 @@
 |INFORMAÇÕES A RESPEITO DO ANGULAR|
  ---------------------------------
 
-Instalando CLI do Angular -> npm install -g @angular/cli
+INSTALAR ANGULAR
+
+    Instalando CLI do Angular -> npm install -g @angular/cli
 ________________________________________________________________
+CRIAR PROJETO
 
-Criar novo projeto -> ng new <nome_projeto>
+    Criar novo projeto -> ng new <nome_projeto>
+
 ________________________________________________________________
+EXECUTAR PROJETO
 
-Rodando o projeto -> ng serve
+    Rodando o projeto -> ng serve
+
 ________________________________________________________________
+CRIAR MÓDULO
 
-ng g m <name_archieve> -> Cria um novo módulo no projeto Angular.
+    ng g m <name_archieve> -> Cria um novo módulo no projeto Angular.
+
 ________________________________________________________________
+CRIAR COMPONENTE
 
-Criar um componente pelo CLI -> ng generate component <nome_pasta></nome_componente>
+    Criar um componente pelo CLI -> ng generate component <nome_pasta></nome_componente>
 
+    Comando alternativo:
+
+        ng g c --module pages pages/details //Quando se está trabalhando com lazy load, se tem que específicar qual em qual módulo da aplicação se deseja criar o componente
 
 ________________________________________________________________
 INFORMAÇÕES GERAIS SOBRE ESTRUTURAS USADAS NO ANGULAR
@@ -270,7 +282,6 @@ CONFIGURANDO UM NOVO MÓDULO NA APLICAÇÃO
     dentro do outro módulo em que eu for utilizar esse componente. Dentro de NgModules, no atributo Imports, basta adicionar o nome exportado.
 
         Depois destes passos, podemos utilziar normalmente o novo componente criado dentro do nosso mais recente módulo no outro módulo para o qual o importamos.   
-
 
 _________________________________________________________________________________________________________________________________________________________
 COMUNICAÇÃO ENTRE COMPONENTES
