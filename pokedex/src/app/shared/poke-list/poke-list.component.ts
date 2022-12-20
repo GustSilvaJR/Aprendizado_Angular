@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pokemon } from 'src/app/models/pokemon';
 
 //Services
 import { PokeApiService } from 'src/app/services/poke-api.service';
@@ -9,6 +10,8 @@ import { PokeApiService } from 'src/app/services/poke-api.service';
   styleUrls: ['./poke-list.component.scss']
 })
 export class PokeListComponent implements OnInit {
+
+  public listPokemons:Array<Pokemon> = [];
 
   constructor(private pokeApiService: PokeApiService) { }
 
