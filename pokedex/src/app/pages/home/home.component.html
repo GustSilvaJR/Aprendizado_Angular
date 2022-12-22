@@ -1,8 +1,8 @@
 
 <main>
     <!-- SEARCH -->
-    <app-poke-search></app-poke-search>
+    <app-poke-search (searchEmit)="catchSearchValue($event)"></app-poke-search>
     
-    <app-poke-list></app-poke-list>
+    <app-poke-list [searchPokemon]=searchData></app-poke-list>
 </main>
 
