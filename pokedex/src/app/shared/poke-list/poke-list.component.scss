@@ -2,9 +2,9 @@
 @import '../../../config-scss/variables.scss';
 
 :host{
-
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     .pokemon{
         position: relative;
@@ -21,6 +21,9 @@
         padding: rem-calc(20);
 
         border-radius: rem-calc(10);
+
+        text-decoration: none;
+        color: var(--primary-color);
 
         &__status{
             h2{
@@ -66,6 +69,10 @@
             bottom: rem-calc(20);
 
             background: url('../../../assets/bg/background-pokemon.svg');
+
+            img{
+                width: rem-calc(110);
+            }
         }
     }
 
