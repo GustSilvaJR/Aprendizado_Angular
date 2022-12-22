@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  public searchData:string = "";
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public catchSearchValue(value:string){
+    this.searchData = value;
+    console.log(`Captei: ${value}`);
   }
 
 }
