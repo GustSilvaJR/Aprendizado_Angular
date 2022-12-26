@@ -32,5 +32,20 @@
                 color: $preto;
             }
         }
+
+        button:hover{
+            background-color: lighten($color: $vermelho, $amount: 5);
+        }
+
+        button:disabled{
+            background: darken($color: $vermelho, $amount: 15);
+            cursor: not-allowed;
+
+            &:hover{
+                background-color: lighten($color: darken($color: $vermelho, $amount: 15), $amount: 5);
+            }
+        }
+
+        
     }
 }

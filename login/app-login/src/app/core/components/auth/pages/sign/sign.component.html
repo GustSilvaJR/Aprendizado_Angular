@@ -1,17 +1,17 @@
 <div class="container">
     <img src="assets/Angular.svg" alt="Logo da Empresa" />
-    <form>
+    <form [formGroup]="form">
         <div>
             <img src="assets/icons/login.svg" />
-            <input type="text" placeholder="E-mail">
+            <input type="text" formControlName="email" placeholder="E-mail">
         </div>
 
         <div>
             <img src="assets/icons/pass.svg" />
-            <input type="password" placeholder="Senha">
+            <input type="password" formControlName="password"  placeholder="Senha">
         </div>
 
-        <button class="btn-vermelho" type="submit">Entrar</button>
+        <button class="btn-vermelho" (click)="submitForm()" [disabled]="form.invalid"   type="submit">Entrar</button>
     </form>
 
     <span class="msg-error">Usuário ou senha incorreta</span>
