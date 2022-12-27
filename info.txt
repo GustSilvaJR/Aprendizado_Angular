@@ -668,3 +668,44 @@ LEAZING LOAD
 
                 Dessa forma estarei referenciando meu arquivo .module, que importa as rotas deste próprio modulo. E a partir delas 
                 estarei referenciando algum componente de dentro do módulo
+
+_________________________________________________________________________________________________________________________________________________________
+NOVIDADES ANGULAR V14
+
+    -> Maneira organizacional utilizando o Standalone;
+
+    -> Elementos do Formulário são analizados antes do form ser renderizado;
+
+    -> Melhoria na acessibilidade para alteração do title a partir da rota. Exemplo:
+
+            const routes: Routes = [
+                {
+                    path:'',
+                    component: MyComponent,
+                    title:'Home'
+                },
+                {
+                    path:'sobre',
+                    component: MyComponent2,
+                    title:'Sobre'
+                },
+            ]
+
+            Dessa forma altero o title do componente de forma dinâmica;
+
+    -> Inject, uma forma de evitar o uso da injeção de dependência, criando funções que irão utilizar o modulo que seria necessário injetar. Exemplo:
+
+        imports ...
+
+        export const getRouteParams = (key: string) => {
+            return inject(ActivatedRoute).snapshot.params[key]
+        }
+
+        Dessa forma consigo utilizar uma função base recuperar os parametros da minha rota, sem ter que, toda vez que for necessário, injetar o ActivatedRoutes
+        no meu componente.
+
+        No gerenciamento de pastas, posso criar uma pasta chamada Helpers para alocar este arquivo, e nomeá-lo a gosto.
+        
+        Para utilizá-lo vou precisar apenas importar este arquivo.
+
+        Muito útil para utilizar com meus serviços.
