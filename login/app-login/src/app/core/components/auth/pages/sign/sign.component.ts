@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { throwError } from 'rxjs';
 
 //Services
 import { AuthService } from 'src/app/core/components/auth/services/auth.service';
@@ -12,8 +13,9 @@ import { AuthService } from 'src/app/core/components/auth/services/auth.service'
 })
 export class SignComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder,
-    private authService: AuthService) { }
+  public msgError:string ='';
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
 
   public form = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -32,8 +34,8 @@ export class SignComponent implements OnInit {
         next: (res) => {
           console.log(res);
         },
-        error: (err) => {
-          console.log(err)
+        error: (err:Error) => {
+          this.msgError = err.message;
         }
       })
     }
