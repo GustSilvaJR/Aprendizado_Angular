@@ -1,0 +1,51 @@
+@import './../../../../../../scss/variables.scss';
+
+:host{
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &,div,input{
+            width: 100%;
+        }
+
+        div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid $preto;
+        }
+
+        img{
+            width: 20px;
+            padding: 8px;
+        }
+
+        input{
+            height: 50px;
+            border: none;
+            font-size: 18px;
+
+            &::placeholder {
+                color: $preto;
+            }
+        }
+
+        button:hover{
+            background-color: lighten($color: $vermelho, $amount: 5);
+        }
+
+        button:disabled{
+            background: darken($color: $vermelho, $amount: 15);
+            cursor: not-allowed;
+
+            &:hover{
+                background-color: lighten($color: darken($color: $vermelho, $amount: 15), $amount: 5);
+            }
+        }
+
+        
+    }
+}

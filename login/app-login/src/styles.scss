@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import './scss/base.scss';
+@import './scss/variables.scss';
+@import './scss/layout/container.scss';
+@import './scss/layout/btn.scss';
+@import './scss/layout/msg-error.scss';
