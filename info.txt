@@ -709,3 +709,48 @@ NOVIDADES ANGULAR V14
         Para utilizá-lo vou precisar apenas importar este arquivo.
 
         Muito útil para utilizar com meus serviços.
+
+_________________________________________________________________________________________________________________________________________________________
+ROUTE GUARDS
+
+
+    Funciona praticamente como um midleware para a minha rota, em que consigo fazer algum tipo de validação
+
+    CanActivate -> Será acionado sempre que uma rota for acessada, modo de uso:
+        (comando para gerar o arquivo)
+        
+        ng g guard shared/guards/canActivate
+
+        Exemplo de uso:
+
+        (Configurando a rota)
+
+            {
+                path:"account",
+                component: AccountComponent,
+                canActivate: [CanActivateGuard], 
+                canDeactivate: [CanDeactivateGuard]
+            }
+
+
+        (dentro do meu arquivo guard)
+            const [account, password] = [route.queryParams['account'], route.queryParams['password'] ]
+      
+            if(account === "admin"){
+                console.log("login adm efetuado");
+            }else{
+                console.log("Common user");
+            }
+
+            console.log(route);
+            console.log(state);
+
+            return true;
+        
+        Daí com base em algo testado aqui eu retorno ou a rota desejada. Se return for true, sim, se for false, nao
+
+________________________________________________________
+
+    CanDeactivate -> Neste caso basicamente voce irá executar alguma ação assim que o usuario deixar uma determinada rota
+
+    
