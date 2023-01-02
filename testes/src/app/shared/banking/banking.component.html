@@ -1,0 +1,14 @@
+<h1>Banco InterLudico</h1>
+
+<div>
+    <p>Olá Gustavo, seu saldo é R${{saldo}}</p>
+    <input #saldoInp type="number" max="{{saldo}}" min="1" />
+    <button type="submit" (click)="sacar(saldoInp.value)">Sacar</button>
+</div>
+<hr/>
+<br/>
+<div>
+    <p>Deseja efetuar algum depósito ?</p>
+    <input #deposito type="number" min="1" />
+    <button type="submit" (click)="depositar(deposito.value)">Depositar</button>
+</div>

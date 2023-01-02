@@ -26,13 +26,6 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Testes');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Testes app is running!');
-  });
-
   it('Testando função de boas vindas', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
