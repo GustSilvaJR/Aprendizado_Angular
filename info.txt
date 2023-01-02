@@ -753,4 +753,40 @@ ________________________________________________________
 
     CanDeactivate -> Neste caso basicamente voce irá executar alguma ação assim que o usuario deixar uma determinada rota
 
-    
+_________________________________________________________________________________________________________________________________________________________
+TESTES
+
+    Configurações iniciais:
+
+    describe('AppComponent', () => {
+        beforeEach(async () => {
+            await TestBed.configureTestingModule({
+            imports: [
+                RouterTestingModule
+            ],
+            declarations: [
+                AppComponent
+            ],
+            }).compileComponents();
+        });
+
+    No describe eu aponto qual componente estarei testando, e dentro de imports estarei
+    definindo quais modulos de teste usarei durante.
+
+    it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+    });
+
+    A cada it eu defino um teste a ser executado, e como primeiro parametro defino o nome dele.
+    Em segguida uma função que irá definir o que será testado
+
+________________________________________________________
+    Comando para rodar o servidor de teste:
+
+        ng test //Roda meu servidor de teste executando todos os testes
+
+    Comando para rodar meus testes junto da cobertura dele em relação a todo o meu sistema
+
+        ng test --code-coverage //Neste caso roda no terminal, mas gera uma pasta coverage que posso executar para ver o resutlado no navegador
