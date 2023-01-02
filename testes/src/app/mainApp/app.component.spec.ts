@@ -32,4 +32,10 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain('Testes app is running!');
   });
+
+  it('Testando função de boas vindas', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.hello("Gustavo"));
+  });
 });
