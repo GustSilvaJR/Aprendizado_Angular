@@ -63,4 +63,25 @@ describe('BankingComponent', () => {
 
     expect(component.saldo).toEqual(saldoInicial);
   });
+
+  //Teste de interface
+  it('(U) depositar() - interface: Will test if when I add some value in my wallet, the interface will update the value', ()=>{
+    const body = fixture.debugElement.nativeElement;
+    console.log(component.saldo);
+
+    const oldValue = body.querySelector("#currentBalance").textContent; 
+    console.log(oldValue);
+    console.log("testando")
+
+    body.querySelector("#inpDeposito").value = '20';
+    body.querySelector("#deposito button").click();
+    
+    fixture.detectChanges();//Detecta as mudanças que ocorrem na interface, a partir de alguma ação do back-end
+
+    console.log(body.querySelector("#currentBalance").textContent);
+    console.log(component.saldo);
+
+    expect(body.querySelector("#currentBalance").textContent).not.toEqual(oldValue); 
+
+  })
 });
