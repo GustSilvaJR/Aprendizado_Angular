@@ -16,22 +16,20 @@ export class BankingComponent implements OnInit {
 
   public isPossible(num:number):boolean{
     if(this.saldo>=num){
-      this.saldo -= num;
       return true;
     }else{
       return false;
     }
   }
 
-  public sacar(number:string):number{
+  public sacar(number:string):void{
     const num = parseFloat(number);
 
     if(this.isPossible(num)){
+      this.saldo -= num;
       console.log(`Sacado com sucesso! : ${num}`);
-      return num;
     }else{
       console.log(`Nao é possivel sacar ${num} de ${this.saldo}`)
-      return num;
     }
   }
 
