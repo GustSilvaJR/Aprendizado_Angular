@@ -783,6 +783,39 @@ TESTES
     Em segguida uma função que irá definir o que será testado
 
 ________________________________________________________
+    Capturando tela o html para efetuar algum teste de interface: 
+
+    it('(U) depositar() - interface: Will test if when I add some value in my wallet, the interface will update the value', ()=>{
+        
+        const body = fixture.debugElement.nativeElement; //Capturando o html do meu componente
+
+        const oldValue = body.querySelector("#currentBalance").textContent; 
+
+        body.querySelector("#inpDeposito").value = '20';
+        body.querySelector("#deposito button").click();
+        
+        fixture.detectChanges();//Detecta as mudanças que ocorrem no html, a partir de alguma ação do back-end
+
+        expect(body.querySelector("#currentBalance").textContent).not.toEqual(oldValue); 
+    })
+
+________________________________________________________
+    Declarar componente dentro de componente para que o teste possa reconhecê-lo
+
+    describe('AppComponent', () => {
+        beforeEach(async () => {
+            await TestBed.configureTestingModule({
+            imports: [
+                RouterTestingModule
+            ],
+            declarations: [
+                AppComponent        //Preciso declarar dentro desse array todos os componentes que eu utilizar dentro do meu componente, independente se irei efetuar algum teste
+                                    //envolvendo ele. Devo fazer isso mesmo ele tendo seu próprio arquivo para testes, pois é lá que ficarao seus testes. Aqui só terá testes
+                                    //envolvendo ele se for necessário em alguma funcionalidade deste componente.
+            ],
+            }).compileComponents();
+    });
+________________________________________________________
     Comando para rodar o servidor de teste:
 
         ng test //Roda meu servidor de teste executando todos os testes
