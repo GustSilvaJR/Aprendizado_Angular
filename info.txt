@@ -823,3 +823,60 @@ ________________________________________________________
     Comando para rodar meus testes junto da cobertura dele em relação a todo o meu sistema
 
         ng test --code-coverage //Neste caso roda no terminal, mas gera uma pasta coverage que posso executar para ver o resutlado no navegador
+
+________________________________________________________
+    Criando um mock para testar uma requisição HTTP
+
+        Mock é setar algum valor para o retorno de uma determinada requisição, para que eu nao fique refém
+    de um serviço externo na hora de testar minha aplicação. Dessa forma passo um valor que seja
+    compatível com a resposta que eu teria e testo o meu serviço a partir disso
+
+
+    let service: ListInvestimentsService; //Meu serviço
+
+    let httpTestingController: HttpTestingController;
+    let httpClient: HttpClient;
+
+    let URL:string = 'https://raw.githubusercontent.com/troquatte/fake-server/main/investiments-all.json';
+
+    let mock:Array<Investiments> = [ //Array que usarei para mockar o resultado da requisição
+        {
+        name: 'Banco teste 1',
+        value: 40
+        },
+        {
+        name: 'Banco teste 2',
+        value: 50
+        },
+        {
+        name: 'Banco teste 3',
+        value: 60
+        },
+        {
+        name: 'Banco teste 4',
+        value: 70
+        },
+    ]
+
+    beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule] //Importacao 
+    });
+
+    httpTestingController = TestBed.inject(HttpTestingController); //Injeção
+
+    service = TestBed.inject(ListInvestimentsService);//Injeção
+  });
+
+
+    it('(U) should list all investiments', (done) =>{
+    service.list().subscribe((res: Array<Investiments>) => {
+      expect(res[0].name).toEqual('Banco teste 1');
+      done();
+    });
+  
+    const req = httpTestingController.expectOne(URL); //Testo qual a url eu vou utilizar
+    req.flush(mock);
+
+    expect(req.request.method).toEqual('GET'); 
+    })
