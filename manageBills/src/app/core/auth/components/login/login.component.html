@@ -5,19 +5,22 @@
 
     <div id="login-body">
         <img id="logotipo" src="./assets/img/logoLogin.png" alt="Logotipo Carrinho" />
-        <form>
+
+        <form [formGroup]="loginForm">
             <div class="input-holder">
                 <img src="./assets/icon/user.png" alt="Imagem de usuario">
-                <input type="text" placeholder="USUÁRIO" alt="Nome de usuario" />
+                <input class="email" (change)="teste()" [ngClass]="{'teste': loginForm.get('email')?.valid}" type="email" placeholder="E-MAIL" alt="E-mail do usuario" formControlName="email" />
             </div>
 
             <div class="input-holder">
                 <img src="./assets/icon/pass.png" alt="Imagem de usuario">
-                <input type="password" placeholder="SENHA" alt="Senha" />
+                <input type="password" placeholder="SENHA" alt="Senha" formControlName="password" />
             </div>
 
-            <button class="btn-sign-in" type="button" alt="Login">ENTRAR</button>
-            <a href="#"><p>Esqueceu a senha ?</p></a>
+            <button class="btn-sign-in" type="button" alt="Login" (click)="sendForm()">ENTRAR</button>
+            <a href="#">
+                <p>Esqueceu a senha ?</p>
+            </a>
         </form>
 
 
