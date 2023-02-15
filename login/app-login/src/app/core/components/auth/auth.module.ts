@@ -7,6 +7,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SignComponent } from './pages/sign/sign.component';
 
 
+
 @NgModule({
   declarations: [
     SignComponent
@@ -15,7 +16,7 @@ import { SignComponent } from './pages/sign/sign.component';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule    
+    HttpClientModule 
   ]
 })
 export class AuthModule { }

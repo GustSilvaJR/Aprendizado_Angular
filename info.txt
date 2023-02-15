@@ -636,7 +636,7 @@ ROTAS FILHAS
     ]},
 
 ________________________________________________________
-LEAZING LOAD
+LAZING LOAD
 
         É utilizado para deixar a aplciação mais dinâmica durante o carregamento de seus componentes, dessa forma 
     baixando os arquivos com um tempo mais espaçado, ganhando mais desempenho na aplicação.
