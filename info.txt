@@ -880,3 +880,40 @@ ________________________________________________________
 
     expect(req.request.method).toEqual('GET'); 
     })
+
+_________________________________________________________________________________________________________________________________________________________
+VIEW ENCAPSULATION
+
+	O Angular usa o view encapsulation para conseguir deixar a estilização específica em cada componente. Dessa forma sem que um estilo afete demais componentes da aplicação.
+
+	Para alterar posso utilizar um parametro encapsulation no arquivo.ts do componente.
+
+	selector: 'app-modal-create-user',
+  	templateUrl: './modal-create-user.component.html',
+  	styleUrls: ['./modal-create-user.component.scss'],
+  	encapsulation: 
+
+	Por default é utilizada Emulated que pré processa o css de cada componente e gera um codigo que encapsula aquele estilo ao componente em questão.
+_________________________________________________________________________________________________________________________________________________________
+ANGULAR MATERIALS
+
+
+________________________________________________________
+SOBRESCREVENDO ESTILOS DO ANGULAR MATERIALS
+
+	#1 - Uma maneira seria utilizar alterar a opção encapsulation para ViewEncapsulation.none para que os estilos deste componente não sejam encapsulados a este component, porém
+	desta forma o estilo é aplicado de forma global.
+
+	#2 - Crio uma estilização direta no arquivo principal de estilo, especificando o componente que quero estilizar e criando uma classe que dará o grau de especificidade no componente.
+	Em seguida passarei a classe junto da classe.
+
+
+		.crud-user .mat-dialog-container{
+    			background-color: transparent !important;
+    			background: none !important;
+    			box-shadow: none !important;
+		}
+	
+		const dialogRef = this.dialog.open(ModalCreateUserComponent, { panelClass: 'crud-user'});
+
+
