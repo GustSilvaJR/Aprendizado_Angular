@@ -1,10 +1,46 @@
+import { Observable, from } from "rxjs";
 
-function component() {
-  const element = document.createElement('div');
+const numbers = [1, 5, 10];
+const source = from(numbers);
 
-  element.innerHTML ="Hello World!!!!";
-
-  return element;
+const myObserver = {
+    next: (x:number) => console.log(x),
+    error: (e: Error) => console.log(e),
+    complete: () => console.log("Observable finalizado")
 }
 
-document.body.appendChild(component());
+class AlternativeObserver {
+    next(x:number) {
+        console.log(x);
+    };
+    
+    error(e:Error) {
+        console.log(e);
+    };
+    
+    complete() {
+        console.log("Observable alternativo finalizado!");
+    };
+}
+
+const sourceInstance = new Observable(subscriber => {
+    for(let n of numbers){
+        if(n>5){
+            subscriber.error("Aconteceu algum problema!");
+        }
+        subscriber.next(n);
+    }
+    subscriber.complete();
+});
+
+
+
+function component() {
+  source.subscribe(myObserver);
+
+  source.subscribe(new AlternativeObserver);
+
+  sourceInstance.subscribe(myObserver);
+}
+
+component(); 
