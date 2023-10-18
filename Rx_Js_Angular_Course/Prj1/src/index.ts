@@ -1,46 +1,30 @@
-import { Observable, from } from "rxjs";
+import { Observable, from, fromEvent } from "rxjs";
+import { delay, map, filter } from "rxjs/operators";
 
-const numbers = [1, 5, 10];
-const source = from(numbers);
-
-const myObserver = {
-    next: (x:number) => console.log(x),
-    error: (e: Error) => console.log(e),
-    complete: () => console.log("Observable finalizado")
+interface mouseTrack {
+    x: number;
+    y: number;
 }
 
-class AlternativeObserver {
-    next(x:number) {
-        console.log(x);
-    };
-    
-    error(e:Error) {
-        console.log(e);
-    };
-    
-    complete() {
-        console.log("Observable alternativo finalizado!");
-    };
+let circle = document.getElementById("circle");
+
+let source = fromEvent(document, 'mousemove').pipe(
+    map((e: MouseEvent) => {
+        return {x: e.clientX, y: e.clientY}
+    }),
+    filter((value: mouseTrack) => value.x < 500),
+    delay(100)
+)
+
+function onNext(value: mouseTrack){
+    console.log(value);
+
+    circle.style.left = `${value.x}px`;
+    circle.style.top = `${value.y}px`;
 }
 
-const sourceInstance = new Observable(subscriber => {
-    for(let n of numbers){
-        if(n>5){
-            subscriber.error("Aconteceu algum problema!");
-        }
-        subscriber.next(n);
-    }
-    subscriber.complete();
-});
-
-
-
-function component() {
-  source.subscribe(myObserver);
-
-  source.subscribe(new AlternativeObserver);
-
-  sourceInstance.subscribe(myObserver);
-}
-
-component(); 
+source.subscribe({
+    next: (value:mouseTrack) => onNext(value),
+    error: (e:Error) => console.log(e),
+    complete: () => console.log("Finalizado")
+})
