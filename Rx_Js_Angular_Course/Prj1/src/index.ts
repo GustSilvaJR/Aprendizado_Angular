@@ -1,6 +1,8 @@
 import { Observable, from, fromEvent } from "rxjs";
 import { delay, map, filter } from "rxjs/operators";
+import Request from "./request";
 
+const req = new Request();
 interface mouseTrack {
     x: number;
     y: number;
@@ -27,4 +29,10 @@ source.subscribe({
     next: (value:mouseTrack) => onNext(value),
     error: (e:Error) => console.log(e),
     complete: () => console.log("Finalizado")
+})
+
+req.click.subscribe({
+    next: () => req.load('../movies.json'),
+    error: (e: Error) => console.log(e),
+    complete: () => console.log("Fim")
 })
