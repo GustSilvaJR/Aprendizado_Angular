@@ -1,0 +1,22 @@
+<div class="container">
+  
+  <h1>Progress bar</h1>
+
+  <mat-progress-bar [value] = "progress_bar"></mat-progress-bar>
+
+  <hr style="margin-top: 100px; "/>
+
+  <h1>Desafio Query + Determinate Mode</h1>
+  <mat-progress-bar color="warn" [value]="progress_bar_challenge" [mode]="mode_challenge"></mat-progress-bar>
+
+  <hr style="margin-top: 100px; "/>
+
+  <h1>Desafio buffer</h1>
+  <mat-progress-bar color="warn" [value]="progress_bar_buffer" [bufferValue] = "progress_bar_buffer_spectrall" mode="buffer"></mat-progress-bar>
+
+  <hr style="margin-top: 100px; "/>
+
+  <h1>Spinner</h1>
+  <mat-spinner></mat-spinner>
+
+</div>

@@ -1,0 +1,27 @@
+body,html{
+  height: 5000px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.sidenav{
+  width: 250px;
+}
+
+.title{
+  margin-top: 100px;
+  height: 250px;
+}
+
+.toolbar-menu{
+  position: fixed;
+}
+
+.toolbar-submenu{
+  margin-top: 50px;
+  height: 100px;
+  font-size: 2rem;
+
+}
