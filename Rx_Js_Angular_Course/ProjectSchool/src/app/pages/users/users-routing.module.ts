@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UsersComponent } from './users.component';
+import { UsersComponent } from './main/users.component';
+import { MyConquestsComponent } from './my-conquests/my-conquests.component';
+import { MyDisciplinesComponent } from './my-disciplines/my-disciplines.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 
 const routes: Routes = [
@@ -17,6 +19,14 @@ const routes: Routes = [
       {
         path: 'myProfile',
         component: MyProfileComponent
+      },
+      {
+        path: 'myConquests',
+        component: MyConquestsComponent
+      },
+      {
+        path: 'myDisciplines',
+        component: MyDisciplinesComponent
       }
     ]
   }
