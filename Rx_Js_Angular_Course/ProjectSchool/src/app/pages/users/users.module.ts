@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { UsersRoutingModule } from './users-routing.module';
+import { UsersMaterialModule } from '@app/shared/material/users-mat.module';
+import { SharedModule } from '@app/shared/shared.module';
 import { UsersComponent } from './main/users.component';
 import { MyConquestsComponent } from './my-conquests/my-conquests.component';
-import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyDisciplinesComponent } from './my-disciplines/my-disciplines.component';
-import { UsersMaterialModule } from 'src/app/shared/material/users-mat.module';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { UsersRoutingModule } from './users-routing.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UsersMaterialModule } from 'src/app/shared/material/users-mat.module';
   imports: [
     CommonModule,
     UsersRoutingModule,
-    UsersMaterialModule
+    UsersMaterialModule,
+    SharedModule,
   ]
 })
 export class UsersModule { }
