@@ -7,6 +7,33 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/users/users.module').then((m) => m.UsersModule),
   },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+  },
+  {
+    path: 'courses',
+    loadChildren: () =>
+      import('./pages/courses/courses.module').then((m) => m.CoursesModule),
+  },
+  {
+    path: 'teachers',
+    loadChildren: () =>
+      import('./pages/teachers/teachers.module').then((m) => m.TeachersModule),
+  },
+  {
+    path: 'students',
+    loadChildren: () =>
+      import('./pages/students/students.module').then((m) => m.StudentsModule),
+  },
+  {
+    path: 'suport',
+    loadChildren: () =>
+      import('./pages/suport/suport.module').then((m) => m.SuportModule),
+  },
 ];
 
 @NgModule({
