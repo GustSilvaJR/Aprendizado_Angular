@@ -1,4 +1,4 @@
-<app-toolbar-menu menuTitle="{{menuTitle}}" [shadow]=applyShadow [popText]=popText   ></app-toolbar-menu>
+<app-toolbar-menu [menuTitle]=menuTitle [shadow]=applyShadow [popText]=popText [items_menu]="items_menu"   ></app-toolbar-menu>
 
 <mat-sidenav-container>
   <mat-sidenav class="sidenav mat-elevation-z2" #sidenav [opened]="!isSmallScreen" [fixedInViewport]="true" [mode]="sidenavMode">
@@ -12,7 +12,7 @@
     <mat-divider></mat-divider>
 
     <mat-nav-list>
-      <a *ngFor="let item of items_menu" mat-list-item [routerLink]="item.link">
+      <a  *ngFor="let item of items_menu" mat-list-item [routerLink]="item.link">
         <mat-icon fontSet="fa" [fontIcon]="item.icon"></mat-icon>
         <span>{{item.label}}</span>
       </a>
@@ -26,7 +26,7 @@
     <mat-toolbar class="toolbar-submenu" color="primary">
       <mat-toolbar-row class="toolbar-submenu-top">
         <button mat-icon-button class="example-icon" (click)="sidenav.toggle()" matTooltip="{{sidenav.opened ? 'Fechar menu' : 'Abrir menu'}}" matTooltipPosition="right">
-          <mat-icon>{{sidenav.opened ? 'menu' : 'close'}}</mat-icon>
+          <mat-icon>{{sidenav.opened ? 'close' : 'menu'}}</mat-icon>
         </button>
       </mat-toolbar-row>
 

@@ -10,6 +10,10 @@ mat-toolbar-row{
   padding: 0px;
 }
 
+:host ::ng-deep .mat-mdc-list-item-unscoped-content{
+  display: flex; flex-direction: row;
+}
+
 .toolbar-submenu {
   height: 205px;
   font-size: 2rem;
@@ -21,7 +25,7 @@ mat-toolbar-row{
   background-color: #575757;
 
   &-title{
-    margin: 30px 32px;
+    padding: 30px 0 0 32px;
   }
 
   &-top{
@@ -45,7 +49,7 @@ mat-toolbar-row{
   margin-top: 64px;
 
   .mat-icon {
-    margin: 10px 10px 0 0;
+    margin: 7px 10px 0 0;
     font-size: 18px;
     color: #636363;
   }
