@@ -3,7 +3,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { filter, fromEvent, map } from 'rxjs';
 import { MenuItem } from '@app/shared/models/menuItem';
 import { menuItems } from '@app/shared/models/menu';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 export const SCROLL_CONTAINER = 'mat-sidenav-content';
 export const TEXT_LIMIT = 50;
@@ -21,11 +21,13 @@ export class AppComponent implements OnInit {
   public items_menu:MenuItem[] = menuItems;
   public breakpointObserver;
   public route;
+  public activatedRoute;
   public menuTitle = '';
 
   constructor() {
     this.breakpointObserver = inject(BreakpointObserver);
     this.route = inject(Router);
+    this.activatedRoute = inject(ActivatedRoute);
   }
 
   ngOnInit(): void {
@@ -37,12 +39,9 @@ export class AppComponent implements OnInit {
 
     this.route.events.pipe(
         filter(event => event instanceof NavigationEnd),
-        map(event => event as NavigationEnd)
       )
-    .subscribe((event:NavigationEnd) => {
-      let moduleName = event.url.split('/')[1];
-
-      this.menuTitle = this.items_menu.filter((item: MenuItem) => item.link == `/${moduleName}`)[0].label;
+    .subscribe(() => {
+      this.menuTitle = this.activatedRoute.firstChild?.snapshot.routeConfig?.path ?? "";
     })
 
   }

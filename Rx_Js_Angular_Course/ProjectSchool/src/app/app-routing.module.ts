@@ -3,6 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
+  },
+
+  {
     path: 'users',
     loadChildren: () =>
       import('./pages/users/users.module').then((m) => m.UsersModule),
@@ -34,6 +40,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/suport/suport.module').then((m) => m.SuportModule),
   },
+  {
+    path: '**',
+    redirectTo: 'dashboard',
+  }
 ];
 
 @NgModule({

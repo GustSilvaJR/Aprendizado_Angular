@@ -15,8 +15,25 @@ export class CoursesService {
   constructor() {
   }
 
-  public getCoursesById(id: number): Observable<Course[]> {
+  public getCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(`${this.baseURL}`)
+  }
+
+  public getCourseById(id: number): Observable<Course[]> {
     return this.http.get<Course[]>(`${this.baseURL}/${id}`)
   }
+
+  public createCourse(course: Course): Observable<Course[]> {
+    return this.http.post<Course[]>(`${this.baseURL}`, course)
+  }
+
+  public changeCourse(id: number, course:Course): Observable<Course[]> {
+    return this.http.put<Course[]>(`${this.baseURL}/${id}`, course)
+  }
+
+  public deleteCourse(id: number): Observable<Course[]> {
+    return this.http.delete<Course[]>(`${this.baseURL}/${id}`)
+  }
+
 
 }
