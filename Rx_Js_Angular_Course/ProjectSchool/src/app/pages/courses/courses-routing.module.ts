@@ -10,12 +10,12 @@ const routes: Routes = [
     pathMatch: 'prefix',
     children:[
       {
-        path:'',
+        path:'**',
         pathMatch:'full',
         redirectTo:'myProfile'
       },
       {
-        path: 'list',
+        path: '',
         component: CoursesListComponent
       },
 

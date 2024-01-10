@@ -13,6 +13,6 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     MatDividerModule,
   ],
-  imports: []
+  imports: [MatCardModule, MatButtonModule, MatDividerModule]
 })
 export class CoursesMaterialModule { }
