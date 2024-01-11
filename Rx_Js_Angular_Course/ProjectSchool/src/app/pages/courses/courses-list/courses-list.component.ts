@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CoursesService } from '@app/services/courses.service';
-import { Course } from '@app/shared/models/course';
+import { Category, Course } from '@app/shared/models/course';
 
 @Component({
   selector: 'app-courses-list',
@@ -9,12 +10,28 @@ import { Course } from '@app/shared/models/course';
 })
 export class CoursesListComponent implements OnInit{
   public courseList:Course[] = [];
+  public categoryValue = Object.values(Category)
+  public form!: FormGroup;
   private courseService = inject(CoursesService);
+  private fb = inject(FormBuilder);
+
 
   constructor(){}
 
   ngOnInit(): void {
     this.getCourses();
+    this.validation();
+  }
+
+  private validation(): void{
+    this.form = this.fb.group({
+      category: [''],
+      search: [''],
+    })
+  }
+
+  public doSearch(): void{
+
   }
 
   public getCourses(): void {
