@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [],
@@ -20,6 +21,7 @@ import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginato
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
+    MatProgressBarModule
   ],
   imports: [],
   providers: [{ provide: MatPaginatorIntl, useValue: customPaginator() }]

@@ -4,20 +4,20 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { CoursesService } from '@app/services/courses.service';
 import { Category, Course } from '@app/shared/models/course';
-import { Subscription, debounceTime } from 'rxjs';
+import { Observable, Subscription, debounceTime, tap } from 'rxjs';
 
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss'],
 })
-export class CoursesListComponent implements OnInit OnDestroy {
+export class CoursesListComponent implements OnInit {
   public courseList: Course[] = [];
   public categoryValue = Object.values(Category);
   public form!: FormGroup;
   private courseService = inject(CoursesService);
   private fb = inject(FormBuilder);
-  private sub!: Subscription;
+  public courseData!: Observable<any>;
 
   public totalCount: number = 0;
   public currentPage: number = 1;
@@ -39,10 +39,6 @@ export class CoursesListComponent implements OnInit OnDestroy {
       }
     });
     this.getCourses(1, 5, '', '');
-  }
-
-  ngOnDestroy(): void {
-      this.sub.unsubscribe();
   }
 
   private validation(): void {
@@ -71,19 +67,13 @@ export class CoursesListComponent implements OnInit OnDestroy {
     category: string,
     search: string
   ): void {
-    this.sub = this.courseService
-      .getCourses(currentPage, pageSize, category, search)
-      .subscribe({
-        next: (response: HttpResponse<any>) => {
-          this.courseList = response.body as Course[];
-          let totalCount = response.headers.get('X-Total-Count');
-          this.totalCount = totalCount ? Number(totalCount) : 0;
-        },
-
-        error: (response: any) => {
-          console.log('Erro ao consumir API dos cursos');
-        },
-      });
+    this.courseData = this.courseService.getCourses(currentPage, pageSize, category, search).pipe(
+      tap((response: HttpResponse<any>) => {
+        this.courseList = response.body as Course[];
+        let totalCount = response.headers.get('X-Total-Count');
+        this.totalCount = totalCount ? Number(totalCount) : 0;
+      })
+    );
   }
 
   public handlePageEvent(e: PageEvent): void {
