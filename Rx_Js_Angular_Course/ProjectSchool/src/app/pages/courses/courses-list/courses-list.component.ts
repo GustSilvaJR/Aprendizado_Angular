@@ -2,9 +2,10 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CoursesService } from '@app/services/courses.service';
 import { Category, Course } from '@app/shared/models/course';
-import { Observable, Subscription, debounceTime, tap } from 'rxjs';
+import { EMPTY, Observable, Subscription, catchError, debounceTime, tap } from 'rxjs';
 
 @Component({
   selector: 'app-courses-list',
@@ -12,10 +13,13 @@ import { Observable, Subscription, debounceTime, tap } from 'rxjs';
   styleUrls: ['./courses-list.component.scss'],
 })
 export class CoursesListComponent implements OnInit {
+
+  private courseService = inject(CoursesService);
+  private _snackBar = inject(MatSnackBar);
+
   public courseList: Course[] = [];
   public categoryValue = Object.values(Category);
   public form!: FormGroup;
-  private courseService = inject(CoursesService);
   private fb = inject(FormBuilder);
   public courseData!: Observable<any>;
 
@@ -72,6 +76,12 @@ export class CoursesListComponent implements OnInit {
         this.courseList = response.body as Course[];
         let totalCount = response.headers.get('X-Total-Count');
         this.totalCount = totalCount ? Number(totalCount) : 0;
+      }),
+      catchError((err:string) => {
+        this._snackBar.open(`Erro: ${err}`, "Close", {
+          duration: 2000
+        });
+        return EMPTY;
       })
     );
   }
